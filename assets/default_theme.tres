@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ch4udta22fl2e"]
+
+[ext_resource type="FontFile" uid="uid://d2x3kkvqv1uf3" path="res://assets/DS-DIGI.TTF" id="1_qew4h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qew4h"]
+bg_color = Color(0.243108, 0.000710169, 0.447804, 1)
+
+[resource]
+default_font = ExtResource("1_qew4h")
+default_font_size = 32
+Button/styles/hover = SubResource("StyleBoxFlat_qew4h")
+Button/styles/normal = SubResource("StyleBoxFlat_qew4h")

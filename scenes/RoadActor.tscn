@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn661qktwvqbr"]
+
+[ext_resource type="Script" uid="uid://bi8vs23gbmril" path="res://addons/road-generator/nodes/road_lane_agent.gd" id="1"]
+[ext_resource type="Script" uid="uid://bkdw3lenxpo0s" path="res://scenes/road_actor.gd" id="1_svmv7"]
+[ext_resource type="PackedScene" uid="uid://cscvh3q3cqddb" path="res://assets/models/cars/trueno.blend" id="3_lfdjr"]
+
+[node name="RoadActor_Trueno" type="Node3D" groups=["cars"]]
+script = ExtResource("1_svmv7")
+
+[node name="road_lane_agent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+
+[node name="trueno" parent="." instance=ExtResource("3_lfdjr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.985061, 0.0449992, -0.166221, 0.085641, 0.709406, 0.699578, 0.149398, -0.703362, 0.694955, 0.105, 1.13122, 0.627131)
