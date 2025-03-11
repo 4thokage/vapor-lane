@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjtdn61eo8mfw"]
+
+[ext_resource type="Script" uid="uid://0mi6riq8lxto" path="res://scenes/menu/interactable.gd" id="1_1t110"]
+[ext_resource type="PackedScene" uid="uid://c83ucn0nb6gq8" path="res://assets/models/cars/trueno.glb" id="2_netp2"]
+[ext_resource type="Texture2D" uid="uid://lfi2atyihy7l" path="res://assets/models/cars/trueno_Image_0.png" id="3_6qk24"]
+[ext_resource type="Shader" uid="uid://bwdgakyln0gel" path="res://assets/shaders/highlight.gdshader" id="4_a811e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqcjm"]
+render_priority = 0
+shader = ExtResource("4_a811e")
+shader_parameter/shine_color = Color(1, 0.521569, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 10.0
+shader_parameter/shine_width = 100.0
+shader_parameter/shine_angle_x = -90.0
+shader_parameter/shine_angle_y = 90.0
+shader_parameter/shine_angle_z = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7kgq"]
+resource_name = "Toyotaae86initiald0041Mtl"
+next_pass = SubResource("ShaderMaterial_uqcjm")
+cull_mode = 2
+albedo_texture = ExtResource("3_6qk24")
+roughness = 0.536364
+emission_enabled = true
+emission_texture = ExtResource("3_6qk24")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaijy"]
+size = Vector3(5.85345, 1.40906, 2.25534)
+
+[node name="Car" type="StaticBody3D"]
+script = ExtResource("1_1t110")
+
+[node name="trueno" parent="." instance=ExtResource("2_netp2")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -3.4679, -0.703811, 3.54669)
+
+[node name="Object_5" parent="trueno/Sketchfab_model/1985 Toyota Sprinter Trueno GT Apex AE86_obj_cleaner_materialme" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t7kgq")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83516, 0.204529, 3.49167)
+shape = SubResource("BoxShape3D_kaijy")
+
+[editable path="trueno"]

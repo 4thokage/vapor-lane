@@ -1,0 +1,187 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp42fom7cc3n0"]
+
+[ext_resource type="Theme" uid="uid://ch4udta22fl2e" path="res://assets/default_theme.tres" id="1_y1aa3"]
+[ext_resource type="Script" uid="uid://b6kwprgaesk4" path="res://scenes/ui/settings.gd" id="2_m8nmd"]
+
+[node name="Settings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y1aa3")
+script = ExtResource("2_m8nmd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 160
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 160
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Pomodoro" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="GameplayContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MaxFPSLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+text = "Pomodoro"
+
+[node name="FPSContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PomoTimeBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 60.0
+step = 5.0
+rounded = true
+alignment = 1
+
+[node name="MaxFPSLabel2" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+text = "Small Break"
+
+[node name="FPSContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="SmallBreakTimeBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 60.0
+step = 5.0
+value = 5.0
+rounded = true
+alignment = 1
+
+[node name="MaxFPSLabel3" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+text = "Big break"
+
+[node name="FPSContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="BigBreakTimeBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 60.0
+step = 5.0
+value = 15.0
+rounded = true
+alignment = 1
+
+[node name="MaxFPSLabel4" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+text = "Auto Advance"
+
+[node name="FPSContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="AutoAdvanceFlag" type="CheckBox" parent="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+alignment = 1
+
+[node name="Tasks" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/Tasks"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Tasks/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/TabContainer/Tasks/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NewTaskContainer" type="TextEdit" parent="MarginContainer/VBoxContainer/TabContainer/Tasks/PanelContainer/MarginContainer/AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Add Task..."
+
+[node name="AddTaskBtn" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Tasks/PanelContainer/MarginContainer/AudioContainer"]
+layout_mode = 2
+text = "+ ADD"
+
+[node name="TasksList" type="ItemList" parent="MarginContainer/VBoxContainer/TabContainer/Tasks/PanelContainer/MarginContainer/AudioContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 1
+max_columns = 2
+item_0/text = "Learn the FFT"
+
+[node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="QuitBtn" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Quit"
+
+[node name="SaveBtn" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+layout_mode = 2
+text = "Save
+"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer/PomoTimeBox" to="." method="_on_pomo_time_box_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabContainer/Pomodoro/PanelContainer/MarginContainer/GameplayContainer/FPSContainer2/SmallBreakTimeBox" to="." method="_on_small_break_time_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/SaveBtn" to="." method="_on_save_button_pressed"]

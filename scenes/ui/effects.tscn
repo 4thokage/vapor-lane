@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://bl4bwo5by58ln"]
+
+[ext_resource type="Shader" uid="uid://c1yjeko525i7k" path="res://assets/shaders/sharpness.gdshader" id="1_ijmc2"]
+[ext_resource type="Shader" uid="uid://2rb41k14fqto" path="res://assets/shaders/NTSC.gdshader" id="2_pldyn"]
+[ext_resource type="Texture2D" uid="uid://b6k3ptlw6ejqq" path="res://assets/textures/grain.jpg" id="3_5lrrl"]
+[ext_resource type="Texture2D" uid="uid://3p2mjtfanwvb" path="res://assets/CRT Frame.png" id="4_gb1gn"]
+[ext_resource type="Shader" uid="uid://oyiikbisavey" path="res://assets/shaders/glitch.gdshader" id="4_pldyn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4a3tv"]
+shader = ExtResource("1_ijmc2")
+shader_parameter/sharpen_amount = 2.403
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ve0c"]
+shader = ExtResource("2_pldyn")
+shader_parameter/blur_amount = 1.515
+shader_parameter/signal_quality = 0.0
+shader_parameter/bottom_strenth = 1.61
+shader_parameter/grain_tex = ExtResource("3_5lrrl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5lrrl"]
+shader = ExtResource("4_pldyn")
+shader_parameter/_ScanLineJitter = 0.25
+shader_parameter/_VerticalJump = 0.01
+shader_parameter/_HorizontalShake = 0.0
+shader_parameter/_ColorDrift = 0.02
+
+[node name="Effects" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2(578, 322.5)
+scale = Vector2(5.78, 3.275)
+copy_mode = 2
+
+[node name="Sharpness" type="ColorRect" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_4a3tv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -99.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+position = Vector2(577.5, 325)
+scale = Vector2(5.795, 3.28)
+copy_mode = 2
+
+[node name="NTSC" type="ColorRect" parent="BackBufferCopy2"]
+material = SubResource("ShaderMaterial_6ve0c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="."]
+position = Vector2(575, 324.5)
+scale = Vector2(5.79, 3.255)
+copy_mode = 2
+
+[node name="NTSC" type="ColorRect" parent="BackBufferCopy3"]
+material = SubResource("ShaderMaterial_5lrrl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_gb1gn")
+expand_mode = 1

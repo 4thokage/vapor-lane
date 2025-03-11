@@ -1,75 +1,111 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsqkbfkn6sts7"]
+[gd_scene load_steps=27 format=3 uid="uid://dsqkbfkn6sts7"]
 
 [ext_resource type="Script" uid="uid://doj3eyee68otn" path="res://scenes/menu/menu.gd" id="1_037ec"]
 [ext_resource type="Script" uid="uid://fgpp067x6gp8" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_4ndjb"]
-[ext_resource type="Shader" uid="uid://b6md6rpi7gh0x" path="res://assets/shaders/VHSPause.gdshader" id="5_y1o0p"]
-[ext_resource type="PackedScene" uid="uid://cscvh3q3cqddb" path="res://assets/models/cars/trueno.blend" id="6_r8yej"]
-[ext_resource type="Script" uid="uid://c672kgvnyc545" path="res://addons/vaporwavesky/vaporwave_sky_material.gd" id="15_rlonj"]
-[ext_resource type="Shader" uid="uid://c4e8u4wfjg6in" path="res://addons/vaporwavesky/vaporwave.gdshader" id="16_t5jqm"]
+[ext_resource type="PackedScene" uid="uid://cb83in8f0tbb1" path="res://scenes/player/player.tscn" id="3_e0arn"]
+[ext_resource type="PackedScene" uid="uid://fnvx7w5kerpa" path="res://assets/models/environment/GAS STATION.glb" id="4_037ec"]
+[ext_resource type="PackedScene" uid="uid://cjtdn61eo8mfw" path="res://scenes/player/car_trueno_interactable.tscn" id="4_qo0fc"]
+[ext_resource type="Script" uid="uid://dtckehf4kuv" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_r8yej"]
+[ext_resource type="Script" uid="uid://dfyr4irvch8fg" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_3y2rt"]
+[ext_resource type="Script" uid="uid://bnsblr2cjas3b" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="6_qo0fc"]
+[ext_resource type="PackedScene" uid="uid://bl4bwo5by58ln" path="res://scenes/ui/effects.tscn" id="7_3y2rt"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8yej"]
-shader = ExtResource("16_t5jqm")
-shader_parameter/sky_color = Color(0.1, 0.07, 0.2, 1)
-shader_parameter/sky_horizon_color = Color(0.56, 0.18, 0.42, 1)
-shader_parameter/sky_horizon_decay = 3.0
-shader_parameter/ground_color = Color(0, 0, 0, 1)
-shader_parameter/ground_horizon_color = Color(0.1, 0, 0.07, 1)
-shader_parameter/ground_horizon_decay = 1.0
-shader_parameter/stars_enabled = true
-shader_parameter/stars_below_horizon = false
-shader_parameter/star_color = Color(0.95, 0.9, 0.6, 1)
-shader_parameter/star_radius = 0.3
-shader_parameter/star_density = 5.0
-shader_parameter/star_randomness = 1.0
-shader_parameter/star_seed = Vector2(0, 0)
-shader_parameter/grid_enabled = true
-shader_parameter/grid_color = Color(0.18, 0.92, 0.74, 1)
-shader_parameter/grid_depth = 1.0
-shader_parameter/grid_spacing = 0.8
-shader_parameter/grid_thickness = 0.07
-shader_parameter/grid_max_distance = 25.0
-shader_parameter/grid_max_distance_fade = 0.3
-shader_parameter/grid_energy = 1.0
-shader_parameter/sun_radius = 10.0
-shader_parameter/sun_smoothing = 0.35
-shader_parameter/sun_glow_color = Color(0.96, 0.9, 0.35, 1)
-shader_parameter/sun_glow_radius = 30.0
-shader_parameter/sun_glow_intensity = 0.5
-shader_parameter/sun_gradient_enabled = true
-shader_parameter/sun_color_1 = Color(0.96, 0.9, 0.35, 1)
-shader_parameter/sun_color_2 = Color(0.96, 0.35, 0.9, 1)
-shader_parameter/sun_gradient_pos_frac = 0.6
-shader_parameter/sun_gradient_span_frac = 0.8
-shader_parameter/sun_banding_enabled = true
-shader_parameter/sun_banding_base_gap = 0.03
-shader_parameter/sun_banding_gap_mul = 1.1
-shader_parameter/sun_banding_stop_height = 0.7
-shader_parameter/sun_banding_thickness = 0.01
-script = ExtResource("15_rlonj")
-metadata/_custom_type_script = "uid://c672kgvnyc545"
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r8yej"]
+sky_top_color = Color(0.384314, 0.454902, 0.8, 1)
+sky_horizon_color = Color(0.527886, 0.538041, 0.554073, 1)
+energy_multiplier = 0.6
 
 [sub_resource type="Sky" id="Sky_3y2rt"]
-sky_material = SubResource("ShaderMaterial_r8yej")
-process_mode = 3
+sky_material = SubResource("ProceduralSkyMaterial_r8yej")
 
 [sub_resource type="Environment" id="Environment_t0a87"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_3y2rt")
 tonemap_mode = 4
+tonemap_exposure = 2.56
+glow_enabled = true
+glow_intensity = 0.3
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_037ec"]
-shader = ExtResource("5_y1o0p")
-shader_parameter/shake_amount_x = 500.0
-shader_parameter/shake_amount_y = 500.0
-shader_parameter/white_hlines = 21.901
-shader_parameter/white_vlines = 10.83
+[sub_resource type="BoxShape3D" id="BoxShape3D_qo0fc"]
+size = Vector3(35.2404, 1, 30.7491)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qo0fc"]
+height = 7.79248
+radius = 0.16748
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4i35"]
+size = Vector3(21.2267, 6.297, 7.34277)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rcuxh"]
+size = Vector3(6.66803, 1.59271, 0.676208)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k48pe"]
+size = Vector3(17.5795, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64m6r"]
+size = Vector3(14.8835, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjdsv"]
+size = Vector3(14.8835, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2j8sj"]
+size = Vector3(14.8835, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_55a8x"]
+size = Vector3(17.0454, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2fum"]
+size = Vector3(1, 1, 14.6985)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaijy"]
+size = Vector3(1, 1, 12.0393)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrod7"]
+size = Vector3(1.9704, 1.49652, 1.90717)
+
+[sub_resource type="Resource" id="Resource_k48pe"]
+script = ExtResource("6_qo0fc")
+amplitude = 10.0
+frequency = 0.2
+randomize_noise_seed = 1
+noise_seed = 0
+rotational_noise = true
+positional_noise = false
+rotational_multiplier_x = 1.0
+rotational_multiplier_y = 1.0
+rotational_multiplier_z = 1.0
+positional_multiplier_x = 1.0
+positional_multiplier_y = 1.0
+positional_multiplier_z = 1.0
+metadata/_custom_type_script = "uid://bnsblr2cjas3b"
+
+[sub_resource type="Resource" id="Resource_t0a87"]
+script = ExtResource("6_3y2rt")
+duration = 1.0
+transition = 0
+ease = 2
 
 [node name="Menu" type="Node3D"]
 script = ExtResource("1_037ec")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.2
+light_indirect_energy = 0.2
+light_volumetric_fog_energy = 0.2
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t0a87")
+
 [node name="MainCamera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.987019, 0.160605, 0, -0.160605, 0.987019, -0.0744871, 2.03322, 5.01706)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76732, 1.51466, 14.3277)
+fov = 32.7
 
 [node name="PhantomCameraHost" type="Node" parent="MainCamera3D"]
 process_priority = 300
@@ -77,50 +113,99 @@ process_physics_priority = 300
 script = ExtResource("2_4ndjb")
 metadata/_custom_type_script = "uid://fgpp067x6gp8"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_t0a87")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Ground" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30989, -1.0375, 0.815969)
+shape = SubResource("BoxShape3D_qo0fc")
 
-[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_037ec")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.60745, 3.49175, 7.28938)
+shape = SubResource("CylinderShape3D_qo0fc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Station" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.172737, 2.33471, -4.23195)
+shape = SubResource("BoxShape3D_y4i35")
+
+[node name="Pumps" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28954, 0.772924, 7.90482)
+shape = SubResource("BoxShape3D_rcuxh")
+
+[node name="GAS STATION" parent="StaticBody3D" instance=ExtResource("4_037ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045435, -1.31611, -0.0266361)
+
+[node name="Bound_1" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11309, -0.503204, 15.8754)
+shape = SubResource("BoxShape3D_k48pe")
+
+[node name="Bound_4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.626713, 0, 0.779251, 0, 1, 0, -0.779251, 0, 0.626713, 11.0184, -0.503204, 10.0801)
+shape = SubResource("BoxShape3D_64m6r")
+
+[node name="Bound_5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.163705, 0, 0.986509, 0, 1, 0, -0.986509, 0, -0.163705, 14.8914, -0.503204, -3.00639)
+shape = SubResource("BoxShape3D_pjdsv")
+
+[node name="Bound_6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.934571, 0, 0.355776, 0, 1, 0, -0.355776, 0, -0.934571, 6.64707, -0.503204, -12.6391)
+shape = SubResource("BoxShape3D_2j8sj")
+
+[node name="Bound_7" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-0.889057, 0, -0.457796, 0, 1, 0, 0.457796, 0, -0.889057, -7.10764, -0.503204, -12.2908)
+shape = SubResource("BoxShape3D_55a8x")
+
+[node name="Bound_2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.859585, 0, 0.510993, 0, 1, 0, -0.510993, 0, 0.859585, -14.9104, -0.357662, 9.35957)
+shape = SubResource("BoxShape3D_f2fum")
+
+[node name="Bound_3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.930724, 0, -0.365722, 0, 1, 0, 0.365722, 0, 0.930724, -16.7076, 0, -2.87566)
+shape = SubResource("BoxShape3D_kaijy")
+
+[node name="Trash" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.871128, 0, 0.491056, 0, 1, 0, -0.491056, 0, 0.871128, 13.8778, -0.0120544, 0.596624)
+shape = SubResource("BoxShape3D_rrod7")
+
+[node name="Car" parent="." instance=ExtResource("4_qo0fc")]
+
+[node name="PlayerCharacterBody3D" parent="." instance=ExtResource("3_e0arn")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76732, 0.827365, 14.3277)
+run_noise = SubResource("Resource_k48pe")
+
+[node name="PlayerPhantomCamera3D" type="Node3D" parent="PlayerCharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.687293, 0)
+script = ExtResource("5_r8yej")
+tween_resource = SubResource("Resource_t0a87")
+metadata/_custom_type_script = "uid://dtckehf4kuv"
+
+[node name="VisionRCast" type="RayCast3D" parent="PlayerCharacterBody3D/PlayerPhantomCamera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.000590324, -0.423621)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerCharacterBody3D"]
+
+[node name="CenterCont" type="BoxContainer" parent="PlayerCharacterBody3D/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -39.0
-offset_right = 43.0
-offset_bottom = 39.0
+offset_left = -166.0
+offset_top = -142.5
+offset_right = 166.0
+offset_bottom = 142.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "start
-"
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="ActionTooltipLabel" type="Label" parent="PlayerCharacterBody3D/CanvasLayer/CenterCont"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Controls:
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.807843, 0.298039, 0, 1)
+text = "Press 'F' to start focus!
+"
 
-Q -> previous radio
-E -> NEXT RADIO
-c -> CHANGE VIEW
-M -> Mute audio"
-
-[node name="trueno" parent="." instance=ExtResource("6_r8yej")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128004, 9.53674e-07, 0.816362)
-
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Effects" parent="." instance=ExtResource("7_3y2rt")]

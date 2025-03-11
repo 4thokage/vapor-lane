@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb8i4pgspiu2a"]
+
+[ext_resource type="Script" uid="uid://b6jak65gt0v43" path="res://scenes/ui/HUD.gd" id="1_rnyu1"]
+[ext_resource type="Script" uid="uid://bbrg7ckucvxh3" path="res://scenes/ui/v_slider.gd" id="2_jlufg"]
+[ext_resource type="PackedScene" uid="uid://bl4bwo5by58ln" path="res://scenes/ui/effects.tscn" id="3_l20r4"]
+[ext_resource type="AudioStream" uid="uid://bobvkvqryl38y" path="res://music/ambience/car_outside.mp3" id="4_jvmx1"]
+[ext_resource type="AudioStream" uid="uid://ktwjn2ds72ly" path="res://music/ambience/rain_outside.mp3" id="5_euikm"]
+[ext_resource type="AudioStream" uid="uid://drombvvni12ei" path="res://music/ambience/mixkit-car-double-horn-719.ogg" id="6_p4k5r"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rnyu1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PomodoroContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.5
+offset_right = 152.5
+offset_bottom = 186.0
+grow_horizontal = 2
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/PomodoroContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 140
+text = "25:00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PomodoroContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="ResetBtn" type="Button" parent="CanvasLayer/PomodoroContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="PlayPauseBtn" type="Button" parent="CanvasLayer/PomodoroContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Pause
+"
+
+[node name="NextBtn" type="Button" parent="CanvasLayer/PomodoroContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Next
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 180.0
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Tasks" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "TASKS"
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -175.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="LabelRadioDesc3" type="Label" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "SFX VOL"
+
+[node name="VSlider2" type="HSlider" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+script = ExtResource("2_jlufg")
+audio_bus_name = "SFX"
+
+[node name="CarSoundsBtn" type="CheckButton" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+button_pressed = true
+text = "Car Sounds"
+
+[node name="RainBtn" type="CheckButton" parent="CanvasLayer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Rain
+"
+
+[node name="Effects" parent="CanvasLayer" instance=ExtResource("3_l20r4")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
+
+[node name="CarSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jvmx1")
+volume_db = 3.0
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[node name="RainSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_euikm")
+bus = &"SFX"
+parameters/looping = true
+
+[node name="Horn" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_p4k5r")
+volume_db = 6.71
+
+[connection signal="pressed" from="CanvasLayer/PomodoroContainer/HBoxContainer/ResetBtn" to="." method="_on_reset_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/PomodoroContainer/HBoxContainer/PlayPauseBtn" to="." method="_on_play_pause_btn_toggled"]
+[connection signal="pressed" from="CanvasLayer/PomodoroContainer/HBoxContainer/NextBtn" to="." method="_on_next_btn_pressed"]
+[connection signal="value_changed" from="CanvasLayer/MarginContainer2/VBoxContainer/VSlider2" to="CanvasLayer/MarginContainer2/VBoxContainer/VSlider2" method="_on_value_changed"]
+[connection signal="toggled" from="CanvasLayer/MarginContainer2/VBoxContainer/CarSoundsBtn" to="." method="_on_car_sounds_btn_toggled"]
+[connection signal="toggled" from="CanvasLayer/MarginContainer2/VBoxContainer/RainBtn" to="." method="_on_rain_btn_toggled"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -43,7 +43,6 @@ func _ready() -> void:
 	assert(res == OK)
 	res = assign_manager()
 	assert(res == OK)
-	print("Finished setup for road lane agent with: ", road_manager, " and ", current_lane)
 
 
 func assign_lane(new_lane:RoadLane):
@@ -120,7 +119,7 @@ func assign_nearest_lane() -> int:
 	var res = find_nearest_lane()
 	if is_instance_valid(res) and res is RoadLane:
 		assign_lane(res)
-		print("Assigned nearest lane: ", current_lane)
+		#print("Assigned nearest lane: ", current_lane)
 		return OK
 	else:
 		return FAILED

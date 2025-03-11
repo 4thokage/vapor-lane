@@ -1,12 +1,44 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ch4udta22fl2e"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ch4udta22fl2e"]
 
 [ext_resource type="FontFile" uid="uid://d2x3kkvqv1uf3" path="res://assets/DS-DIGI.TTF" id="1_qew4h"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_203bq"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0.454108, 0.753533, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qew4h"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.243108, 0.000710169, 0.447804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oal56"]
+bg_color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlib5"]
+bg_color = Color(0.243137, 0, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81pgw"]
+bg_color = Color(0.768517, 0.000368104, 0.747166, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs2sx"]
+bg_color = Color(0.461299, 0.62405, 0.734091, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkpim"]
+bg_color = Color(0.600821, 0.506341, 1, 1)
 
 [resource]
 default_font = ExtResource("1_qew4h")
 default_font_size = 32
-Button/styles/hover = SubResource("StyleBoxFlat_qew4h")
+Button/styles/hover = SubResource("StyleBoxFlat_203bq")
 Button/styles/normal = SubResource("StyleBoxFlat_qew4h")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_oal56")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_qlib5")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_81pgw")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_cs2sx")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_81pgw")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_vkpim")

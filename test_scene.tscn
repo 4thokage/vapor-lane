@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://5sf1v16be548"]
+[gd_scene load_steps=6 format=3 uid="uid://b7p6cexyggawh"]
 
 [ext_resource type="Script" uid="uid://c672kgvnyc545" path="res://addons/vaporwavesky/vaporwave_sky_material.gd" id="1_rkrok"]
 [ext_resource type="Shader" uid="uid://c4e8u4wfjg6in" path="res://addons/vaporwavesky/vaporwave.gdshader" id="2_i1k5m"]
